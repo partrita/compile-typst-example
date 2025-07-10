@@ -28,9 +28,10 @@ jobs:
 
       - name: Release on tag
         uses: softprops/action-gh-release@v1
-        if: github.ref_type = 'tag'
+        if: github.ref_type == 'tag' # Corrected this line
         with:
           name: "${{ github.ref_name }}"
           files: |
-            path/to/output/file1.pdf
-            path/to/output/file2.pdf
+            outputs/calculus.pdf # Assuming these are the correct paths after compilation
+            outputs/quadratics.pdf
+            outputs/korean_calculus.pdf
