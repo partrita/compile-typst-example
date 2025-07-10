@@ -16,9 +16,21 @@ jobs:
       - name: Compile Typst to PDF
         uses: ammar-ahmed22/compile-typst-action@v1
         with:
-          source_paths: 'src/calculus.typ src/quadratics.typ'
-          output_paths: 'calculus.pdf quadratics.pdf'
-      - name: Commit compiled PDFs
-        uses: stefanzweifel/git-auto-commit-action@v5
+          source_paths: 'src/calculus.typ src/quadratics.typ src/korean_calculus.typ'
+          output_paths: 'outputs/calculus.pdf outputs/quadratics.pdf outputs/korean_calculus.pdf'
+          fonts_path: 'fonts'
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
         with:
-          commit_message: '[continuous deployment]: Compiled Typst to PDF'
+          name: PDF
+          path: '**/*.pdf'
+
+      - name: Release on tag
+        uses: softprops/action-gh-release@v1
+        if: github.ref_type = 'tag'
+        with:
+          name: "${{ github.ref_name }}"
+          files: |
+            path/to/output/file1.pdf
+            path/to/output/file2.pdf
