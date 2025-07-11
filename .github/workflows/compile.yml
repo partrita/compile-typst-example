@@ -14,7 +14,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
       - name: Compile Typst to PDF
-        uses: ammar-ahmed22/compile-typst-action@v1
+        uses:  siefkenj/compile-typst-action@v1
         with:
           source_paths: 'src/calculus.typ src/quadratics.typ src/korean_calculus.typ'
           output_paths: 'outputs/calculus.pdf outputs/quadratics.pdf outputs/korean_calculus.pdf'
